@@ -6,19 +6,44 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # --- Implementação do Algoritmo Merge Sort ---
-def merge_sort_custom(arr, key, reverse=False):
-    # (O código do seu merge_sort_custom continua aqui, sem alterações)
+def merge_sort_custom(arr, key):
+    # Caso base: se o tamanho do array for maior que 1, executa a divisão
     if len(arr) > 1:
-        meio = len(arr) // 2; metade_esquerda = arr[:meio]; metade_direita = arr[meio:]
-        merge_sort_custom(metade_esquerda, key, reverse); merge_sort_custom(metade_direita, key, reverse)
+        
+        # Encontra o meio do array para dividi-lo em duas metades
+        meio = len(arr) // 2
+        metade_esquerda = arr[:meio]  # Primeira metade do array
+        metade_direita = arr[meio:]  # Segunda metade do array
+
+        # Chama recursivamente o merge_sort_custom para ordenar ambas as metades
+        merge_sort_custom(metade_esquerda, key)
+        merge_sort_custom(metade_direita, key)
+
+        # Inicializa os índices para percorrer as metades e o array original
         i = j = k = 0
+
+        # Enquanto houver elementos em ambas as metades para comparar
         while i < len(metade_esquerda) and j < len(metade_direita):
-            condicao = key(metade_esquerda[i]) > key(metade_direita[j]) if reverse else key(metade_esquerda[i]) < key(metade_direita[j])
-            if condicao: arr[k] = metade_esquerda[i]; i += 1
-            else: arr[k] = metade_direita[j]; j += 1
+            # Comparação dos elementos usando a função 'key' fornecida
+            if key(metade_esquerda[i]) < key(metade_direita[j]):
+                arr[k] = metade_esquerda[i]  # Atribui o elemento da metade esquerda
+                i += 1  # Avança para o próximo elemento na metade esquerda
+            else:
+                arr[k] = metade_direita[j]  # Atribui o elemento da metade direita
+                j += 1  # Avança para o próximo elemento na metade direita
+            k += 1  # Avança para a próxima posição no array original
+
+        # Se ainda houver elementos na metade esquerda, copia-os para o array
+        while i < len(metade_esquerda):
+            arr[k] = metade_esquerda[i]
+            i += 1
             k += 1
-        while i < len(metade_esquerda): arr[k] = metade_esquerda[i]; i += 1; k += 1
-        while j < len(metade_direita): arr[k] = metade_direita[j]; j += 1; k += 1
+
+        # Se ainda houver elementos na metade direita, copia-os para o array
+        while j < len(metade_direita):
+            arr[k] = metade_direita[j]
+            j += 1
+            k += 1
 
 # --- Funções para o Experimento ---
 def gerar_dados_alunos(num_alunos):
