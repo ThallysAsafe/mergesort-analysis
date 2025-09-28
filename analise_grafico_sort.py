@@ -96,16 +96,12 @@ def gerar_grafico_final_artigo(tamanhos_n, tempos_medidos):
 
     # Calcula as constantes 'c' para cada curva de complexidade
     c_n_log_n = ultimo_tempo / (ultimo_n * np.log2(ultimo_n))
-    c_n_quadrado = ultimo_tempo / (ultimo_n**2)
-    c_n_linear = ultimo_tempo / ultimo_n
 
     # Cria um eixo X contínuo para desenhar as curvas
     eixo_x_suave = np.linspace(n_array.min(), n_array.max(), 400)
 
     # Calcula os valores Y para cada curva teórica ajustada
     y_n_log_n = c_n_log_n * eixo_x_suave * np.log2(eixo_x_suave + 1e-9) # Adicionado 1e-9 para evitar log(0)
-    y_n_quadrado = c_n_quadrado * eixo_x_suave**2
-    y_n_linear = c_n_linear * eixo_x_suave
     y_n_omega = c_n_log_n * eixo_x_suave * np.log2(eixo_x_suave + 1e-9)  # Big Omega (O mesmo de O(n log n))
     y_n_theta = c_n_log_n * eixo_x_suave * np.log2(eixo_x_suave + 1e-9)  # Big Theta (O mesmo de O(n log n))
 
