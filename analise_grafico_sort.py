@@ -86,7 +86,6 @@ def gerar_grafico_experimental_simples(tamanhos_n, tempos_medidos):
     plt.savefig('grafico_experimental_simples.png', dpi=300)
     plt.show()
 
-
 def gerar_grafico_final_artigo(tamanhos_n, tempos_medidos):
     n_array = np.array(tamanhos_n, dtype=np.float64)
     t_array = np.array(tempos_medidos)
@@ -107,6 +106,8 @@ def gerar_grafico_final_artigo(tamanhos_n, tempos_medidos):
     y_n_log_n = c_n_log_n * eixo_x_suave * np.log2(eixo_x_suave + 1e-9) # Adicionado 1e-9 para evitar log(0)
     y_n_quadrado = c_n_quadrado * eixo_x_suave**2
     y_n_linear = c_n_linear * eixo_x_suave
+    y_n_omega = c_n_log_n * eixo_x_suave * np.log2(eixo_x_suave + 1e-9)  # Big Omega (O mesmo de O(n log n))
+    y_n_theta = c_n_log_n * eixo_x_suave * np.log2(eixo_x_suave + 1e-9)  # Big Theta (O mesmo de O(n log n))
 
     # --- Plotagem Profissional para o Artigo ---
     plt.style.use('seaborn-v0_8-whitegrid')
@@ -116,9 +117,9 @@ def gerar_grafico_final_artigo(tamanhos_n, tempos_medidos):
     plt.plot(n_array, t_array, 'o', markersize=8, color='blue', label='Desempenho Experimental')
 
     # Plot das curvas teóricas
-    plt.plot(eixo_x_suave, y_n_log_n, '-', color='green', linewidth=2, label=r'Modelo Teórico $O(n \log n)$')
-    plt.plot(eixo_x_suave, y_n_quadrado, '--', color='red', linewidth=1.5, label=r'Modelo Teórico $O(n^2)$')
-    plt.plot(eixo_x_suave, y_n_linear, ':', color='purple', linewidth=1.5, label=r'Modelo Teórico $O(n)$')
+    plt.plot(eixo_x_suave, y_n_log_n, '-', color='green', linewidth=2, label=r'Pior caso $O(n \log n)$')
+    plt.plot(eixo_x_suave, y_n_omega, '--', color='orange', linewidth=1.5, label=r'Melhor caso $\Omega(n \log n)$')
+    plt.plot(eixo_x_suave, y_n_theta, ':', color='brown', linewidth=1.5, label=r'Complexidade média $\Theta(n \log n)$')
     
     plt.xlabel("Tamanho da Entrada (n)")
     plt.ylabel("Tempo de Execução (segundos)")
