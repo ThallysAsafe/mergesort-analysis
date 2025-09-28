@@ -119,47 +119,9 @@ def gerar_grafico_final_artigo(tamanhos_n, tempos_medidos):
     plt.savefig('grafico_artigo_final.png', dpi=300)
     plt.show()
 
-def gerar_grafico_comparativo_amplo(tamanhos_n, tempos_medidos):
-    n_array = np.array(tamanhos_n, dtype=np.float64)
-    t_array = np.array(tempos_medidos, dtype=np.float64)
-    
-    # Pega o último ponto para ajustar as constantes
-    ultimo_n = n_array[-1]
-    ultimo_tempo = t_array[-1]
-
-    # Calcula as constantes de proporcionalidade
-    c_n_log_n = ultimo_tempo / (ultimo_n * np.log2(ultimo_n))
-    c_n_quadrado = ultimo_tempo / (ultimo_n**2)
-    c_n_linear = ultimo_tempo / ultimo_n
-
-    eixo_x_suave = np.linspace(n_array.min(), n_array.max(), 400)
-
-    # Calcula os valores Y para cada curva
-    y_n_log_n = c_n_log_n * eixo_x_suave * np.log2(eixo_x_suave + 1e-9)
-    y_n_quadrado = c_n_quadrado * (eixo_x_suave**2)
-    y_n_linear = c_n_linear * eixo_x_suave
-
-    plt.style.use('seaborn-v0_8-whitegrid')
-    plt.figure(figsize=(10, 6))
-    
-    plt.plot(n_array, t_array, 'o', markersize=8, color='blue', label='Desempenho Experimental')
-    plt.plot(eixo_x_suave, y_n_log_n, '-', color='green', linewidth=2, label=r'Modelo Teórico $O(n \log n)$')
-    plt.plot(eixo_x_suave, y_n_quadrado, '--', color='red', linewidth=1.5, label=r'Modelo Teórico $O(n^2)$')
-    plt.plot(eixo_x_suave, y_n_linear, ':', color='purple', linewidth=1.5, label=r'Modelo Teórico $O(n)$')
-    
-    plt.xlabel("Tamanho da Entrada (n)")
-    plt.ylabel("Tempo de Execução (segundos)")
-    plt.title("Análise Comparativa Ampla do Desempenho do Merge Sort")
-    plt.legend(loc='upper left')
-    plt.ylim(bottom=0)
-    plt.xlim(left=0)
-    plt.savefig('grafico_comparativo_amplo.png', dpi=300)
-    plt.show()
-
 
 # --- Ponto de Entrada Principal ---
 if __name__ == "__main__":
     n, tempos = executar_experimento()
     gerar_grafico_final_artigo(n, tempos)
     gerar_grafico_experimental_simples(n, tempos)
-    gerar_grafico_comparativo_amplo(n, tempos)
