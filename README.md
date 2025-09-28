@@ -6,14 +6,14 @@
 
 ##  Apresentação
 
-Este projeto foi desenvolvido para a disciplina de **Projeto e Análise de Algoritmos**, do curso de **Ciência da Computação** da **Universidade Federal de Alagoas (UFAL)**, ministrado pelo professor **Alexandre Paes**. O objetivo é aplicar os conhecimentos teóricos sobre complexidade de algoritmos em uma análise experimental prática.
+Este projeto foi desenvolvido para a disciplina de **Projeto e Análise de Algoritmos**, do curso de **Ciência da Computação** da **Universidade Federal de Alagoas (UFAL)**, ministrada pelo professor **Alexandre Paes**. O objetivo é aplicar os conhecimentos teóricos sobre complexidade de algoritmos em uma análise experimental prática.
 
 ## Equipe
 
-*   [Ana]
-*   [Deivisson]
-*   [Rayane]
-*   [Thallys]
+*   Ana Beatriz da Silva
+*   Deivisson da Silva Rocha
+*   Rayane Quézia Lima Duarte
+*   Thallys Asafe Ribeiro de Alcantara
 
 ## Descrição do Projeto
 
