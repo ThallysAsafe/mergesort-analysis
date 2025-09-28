@@ -53,7 +53,3 @@ Ao executar o script, você observará:
 ## Análise dos Resultados
 
 O gráfico final (`grafico_artigo_final.png`) é a principal saída deste projeto. Ele plota o tempo de execução medido em função do tamanho da entrada e sobrepõe as curvas teóricas de complexidade. A análise visual permite confirmar que o comportamento prático do Merge Sort se ajusta muito bem à curva **O(n log n)**, validando a teoria de análise de algoritmos.
-
----
-
-*Este README foi gerado e aprimorado com o auxílio do **Cascade**, a IA assistente de programação da Windsurf.*
